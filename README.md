@@ -45,7 +45,7 @@ jika kita inngin menghapus data maka lakukanlah: <br>
 - select data pada tabel <br>
 - kemudian tekan button "DELETE" <br>
 maka akan tampil seperti dibawah ini jangan lupa tekan OK dan tekan button REFRESH
-
+![untitled](https://cloud.githubusercontent.com/assets/21364340/24007838/5dae5888-0aa2-11e7-8807-0b0ff8fc37d0.png)
 clear data<br>
 ![15](https://cloud.githubusercontent.com/assets/21364340/24006723/2808f6e6-0a9f-11e7-8934-e61f06a90040.png)
 # BUTTON REFRESH
