@@ -401,7 +401,7 @@ public class form_pembayaran extends javax.swing.JFrame {
     }//GEN-LAST:event_petugasActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String tglmasuk = dateFormat.format(masuk.getDate());
         String tglkeluar = dateFormat.format(keluar.getDate());
         
@@ -446,7 +446,7 @@ public class form_pembayaran extends javax.swing.JFrame {
     private void masukPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_masukPropertyChange
         if(masuk.getDate()!=null){
          SimpleDateFormat simpleDateFormat = 
-            new SimpleDateFormat("dd MMMM yyyy");
+            new SimpleDateFormat("dd-MM-yyyy");
         tglpinjam = simpleDateFormat.format(masuk.getDate());
         }
     }//GEN-LAST:event_masukPropertyChange
@@ -455,7 +455,7 @@ public class form_pembayaran extends javax.swing.JFrame {
         if(keluar.getDate()!=null)
         {
             SimpleDateFormat simpleDateFormat = 
-            new SimpleDateFormat("dd MMMM yyyy");
+            new SimpleDateFormat("dd-MM-yyyy");
             tglkembali = simpleDateFormat.format(keluar.getDate());
         }
     }//GEN-LAST:event_keluarPropertyChange
@@ -477,6 +477,8 @@ public class form_pembayaran extends javax.swing.JFrame {
         buttonGroup1.clearSelection();
         masuk.setDate(new Date());
         keluar.setDate(new Date());
+        q.setText("");
+        w.setText("");
         
     }//GEN-LAST:event_clearActionPerformed
 
@@ -508,7 +510,7 @@ public class form_pembayaran extends javax.swing.JFrame {
             nopol.setText(akhir.getValueAt(baris,2).toString());
             if("motor".equals(akhir.getValueAt(baris,3).toString())){motor.setSelected(true);}
             else{mobil.setSelected(true);}
-            SimpleDateFormat date = new SimpleDateFormat ("yyyy-MM-dd");
+            SimpleDateFormat date = new SimpleDateFormat ("dd-MM-yyyy");
             Date dateFormat = null;
             try {
                 dateFormat = date.parse(akhir.getValueAt(baris, 4).toString());
