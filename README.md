@@ -62,6 +62,6 @@ dan jika sudah selesai tekan button print <br>
 ![19](https://cloud.githubusercontent.com/assets/21364340/24006727/28314b0a-0a9f-11e7-8022-3e7df3f38069.png)
 
 # database
-https://drive.google.com/open?id=0B2j5Yd_9VxeoTzZWNmJyejZ6elE
+https://drive.google.com/drive/folders/0B2j5Yd_9VxeoWmFIc3pQQTVSWm8?usp=sharing
 
 
