@@ -1,4 +1,6 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -10,6 +12,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -23,6 +26,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Louisa
  */
 public class form_pembayaran extends javax.swing.JFrame {
+    String nol_jam = "";
+    String nol_menit = "";
+    String nol_detik = "";
         String tglpinjam;
         String tglkembali;
     /**
@@ -45,10 +51,12 @@ public class form_pembayaran extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        labeltanggal = new javax.swing.JLabel();
+        wush = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        labeljam = new javax.swing.JLabel();
+        labeljam = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -72,9 +80,17 @@ public class form_pembayaran extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         akhir = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
+        q = new javax.swing.JTextField();
+        w = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(null);
@@ -88,9 +104,13 @@ public class form_pembayaran extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(276, 0, 444, 50);
 
-        labeltanggal.setText("Tanggal");
-        jPanel2.add(labeltanggal);
-        labeltanggal.setBounds(872, 11, 122, 28);
+        wush.setEditable(false);
+        jPanel2.add(wush);
+        wush.setBounds(870, 10, 160, 30);
+
+        jLabel10.setText("Date              :");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(800, 10, 70, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 1050, 50);
@@ -104,14 +124,18 @@ public class form_pembayaran extends javax.swing.JFrame {
         jPanel3.add(jLabel2);
         jLabel2.setBounds(364, 0, 448, 50);
 
-        labeljam.setText("Jam");
+        labeljam.setEditable(false);
         jPanel3.add(labeljam);
-        labeljam.setBounds(873, 17, 122, 14);
+        labeljam.setBounds(870, 10, 100, 30);
+
+        jLabel9.setText("Time              :");
+        jPanel3.add(jLabel9);
+        jLabel9.setBounds(800, 10, 70, 30);
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(0, 56, 1050, 50);
 
-        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -196,7 +220,7 @@ public class form_pembayaran extends javax.swing.JFrame {
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 120, 400, 330);
 
-        jPanel5.setBackground(new java.awt.Color(255, 204, 153));
+        jPanel5.setBackground(new java.awt.Color(153, 204, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(100, 350));
         jPanel5.setLayout(null);
 
@@ -253,6 +277,9 @@ public class form_pembayaran extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(410, 120, 140, 330);
 
+        akhir.setBackground(new java.awt.Color(153, 204, 255));
+        akhir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 204)));
+        akhir.setForeground(new java.awt.Color(102, 102, 102));
         akhir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -300,17 +327,53 @@ public class form_pembayaran extends javax.swing.JFrame {
         jScrollPane2.setBounds(10, 460, 1030, 120);
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setLayout(null);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+        q.setEditable(false);
+        jPanel6.add(q);
+        q.setBounds(240, 130, 193, 34);
+
+        w.setEditable(false);
+        jPanel6.add(w);
+        w.setBounds(240, 180, 193, 32);
+
+        jLabel11.setText("NOMOR RESI :");
+        jPanel6.add(jLabel11);
+        jLabel11.setBounds(70, 190, 114, 14);
+
+        jLabel12.setText("PETUGAS       :");
+        jPanel6.add(jLabel12);
+        jLabel12.setBounds(70, 140, 114, 14);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel13.setText("SEDANG DI PROSES !!!");
+        jPanel6.add(jLabel13);
+        jLabel13.setBounds(60, 230, 400, 70);
+
+        jPanel7.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel14.setText("DATA YANG DIJALANKAN");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jPanel6.add(jPanel7);
+        jPanel7.setBounds(30, 40, 420, 50);
 
         jPanel1.add(jPanel6);
         jPanel6.setBounds(560, 120, 480, 330);
@@ -403,6 +466,8 @@ public class form_pembayaran extends javax.swing.JFrame {
 
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
             refreshData();
+            setTanggal();
+            setJam();
     }//GEN-LAST:event_refreshActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -437,7 +502,9 @@ public class form_pembayaran extends javax.swing.JFrame {
         if(baris != -1)
         {
             noresi.setText(akhir.getValueAt(baris, 0).toString());
+            w.setText(akhir.getValueAt(baris,0).toString());
             petugas.setText(akhir.getValueAt(baris, 1).toString());
+            q.setText(akhir.getValueAt(baris,1).toString());
             nopol.setText(akhir.getValueAt(baris,2).toString());
             if("motor".equals(akhir.getValueAt(baris,3).toString())){motor.setSelected(true);}
             else{mobil.setSelected(true);}
@@ -510,6 +577,11 @@ public class form_pembayaran extends javax.swing.JFrame {
     private javax.swing.JButton clear;
     private javax.swing.JButton hapus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -517,16 +589,17 @@ public class form_pembayaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private com.toedter.calendar.JDateChooser keluar;
-    private javax.swing.JLabel labeljam;
-    private javax.swing.JLabel labeltanggal;
+    private javax.swing.JTextField labeljam;
     private com.toedter.calendar.JDateChooser masuk;
     private javax.swing.JRadioButton mobil;
     private javax.swing.JRadioButton motor;
@@ -534,8 +607,11 @@ public class form_pembayaran extends javax.swing.JFrame {
     private javax.swing.JTextField noresi;
     private javax.swing.JTextField petugas;
     private javax.swing.JButton print;
+    private javax.swing.JTextField q;
     private javax.swing.JButton refresh;
     private javax.swing.JButton save;
+    private javax.swing.JTextField w;
+    private javax.swing.JTextField wush;
     // End of variables declaration//GEN-END:variables
 
     private void refreshData() {
@@ -566,4 +642,36 @@ public class form_pembayaran extends javax.swing.JFrame {
         }
         akhir.setModel(dtm);
     }
+    
+    public void setTanggal() {
+        java.util.Date skrg = new java.util.Date();
+        java.text.SimpleDateFormat kal = new
+        java.text.SimpleDateFormat("dd/MM/yyyy");
+        wush.setText(kal.format(skrg));
+    }
+
+    public void setJam() {
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                Date dt = new Date();
+                int nilai_jam = dt.getHours();
+                int nilai_menit = dt.getMinutes();
+                int nilai_detik = dt.getSeconds();
+                if (nilai_jam <= 9) {
+                    nol_jam = "0";
+                }
+                if (nilai_menit <= 9) {
+                    nol_menit = "0";
+                }
+                if (nilai_detik <= 9) {
+                    nol_detik = "0";
+                }
+                String jam = nol_jam + Integer.toString(nilai_jam);
+                String menit = nol_menit + Integer.toString(nilai_menit);
+                String detik = nol_detik + Integer.toString(nilai_detik);
+                labeljam.setText(jam + ":" + menit + ":" + detik);
+            }
+        };
+        new Timer(100, taskPerformer).start();
+   }
 }
